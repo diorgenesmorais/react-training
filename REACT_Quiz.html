@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Developer Quiz</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js" charset="utf-8"></script>
+
+    <style>
+        .quiz {
+            display: block;
+            background: linear-gradient(to bottom, #2a86d6 0%,#7db9e8 100%);
+            padding: 40px;
+            color: #ffffff;
+        }
+
+        .quiz button {
+            display: block;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .quiz .correct {
+            background-color: #ffffff;
+            padding: 5px;
+            color: #11AF08;
+            font-weight: bold;
+        }
+
+        .quiz .incorrect {
+            background-color: #ffffff;
+            padding: 5px;
+            color: #FF0C0C;
+            font-weight: bold;
+        }
+    </style>
+
+    <script type="text/babel">
+		class Quiz extends React.Component {
+			constructor(props) {
+				super(props);
+				this.state = {
+					correct: null
+				};
+			}
+
+			resposta(correct) {
+				this.setState({
+					correct
+				});
+			}
+
+			render() {
+				let pergunta = null;
+				if (this.state.correct === null) {
+					pergunta = <div>
+						<button onClick={() => this.resposta(false)}>a) Uma linguagem de consulta do banco de dados gráfico</button>
+						<button onClick={() => this.resposta(true)}>b) Uma linguagem de consulta da API</button>
+						<button onClick={() => this.resposta(false)}>c) Uma API de consulta grafica</button>
+					</div>;
+				}
+				let resposta = null;
+				if (this.state.correct === true) {
+					resposta = <div className="correct">Correto! É uma linguagem de consulta da API</div>;
+				} else if (this.state.correct === false) {
+					resposta = <div className="incorrect">Nope! Na verdade é uma linguagem de consulta da API</div>;
+				}
+
+				return <div className="quiz">
+					<p>O que é o GraphQL?</p>
+					{pergunta}
+					{resposta}
+				</div>;
+			}
+		}
+		ReactDOM.render(<Quiz />,document.getElementById('quiz'));
+    </script>
+</head>
+<body>
+    <div id="quiz"></div>
+</body>
+</html>
