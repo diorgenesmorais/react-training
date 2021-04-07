@@ -84,9 +84,18 @@
 		const question = 'O que é o GraphQL?';
 		const results = { correct: 'É uma linguagem de consulta da API', incorrect: 'Na verdade é uma linguagem de consulta da API'};
 		ReactDOM.render(<Quiz question={question} choices={choices} results={results} />,document.getElementById('quiz'));
+
+		const choices2 = [
+			{text: 'a) Um framework', response: false},
+			{text: 'b) Uma biblioteca', response: true}
+		];
+		const question2 = 'O que é React?';
+		const results2 = { correct: 'É uma biblioteca', incorrect: 'Na verdade é uma biblioteca'};
+		ReactDOM.render(<Quiz question={question2} choices={choices2} results={results2} />,document.getElementById('quiz2'));
     </script>
 </head>
 <body>
     <div id="quiz"></div>
+	<div id="quiz2"></div>
 </body>
 </html>
